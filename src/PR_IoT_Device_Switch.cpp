@@ -11,17 +11,18 @@
 		btn->setup(pin, onValue, enablePull);
 	}   
 	
-	void	PR_IoT_Switch::loopHW() {
-		btn->loop();
+	void	PR_IoT_Switch::setupHWIntervals(uint16_t clickInterval, uint16_t dblClickInterval, uint16_t longPressInterval) {
+		
+		btn->setupIntervals(clickInterval, dblClickInterval, longPressInterval);
 	}	
 			
-			
 	void	PR_IoT_Switch::update() {
-	
-		if ( btn->isOnClick() )		postMsg ("switch", "onclick" );
-		if ( btn->isOnDblClick() )	postMsg ("switch", "ondblclick" );
-		if ( btn->isFell() )		postMsg ("switch", "onfell" );
-		if ( btn->isRose() )		postMsg ("switch", "onrose" );
+		if ( btn->isOnRise() )			postMsg ("switch", "onrise" );	
+		if ( btn->isOnClick() )			postMsg ("switch", "onclick" );
+		if ( btn->isOnDblClick() )		postMsg ("switch", "ondblclick" );
+		if ( btn->isOnFall() )			postMsg ("switch", "onfall" );
+		if ( btn->isOnLongPressed() )	postMsg ("switch", "onlongpressed" );
+
 	
 	}
 	
